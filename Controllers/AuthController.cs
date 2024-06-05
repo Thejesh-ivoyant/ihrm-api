@@ -60,7 +60,7 @@ namespace AuthDemo.Controllers
                     user.FailedLoginAttempts++;
                 }
 
-                if (user.FailedLoginAttempts >= 3) // Adjust as needed
+                if (user.FailedLoginAttempts >= 3) 
                 {
                     user.LockoutEnd = DateTime.UtcNow.AddMinutes(15); // Lock for 15 minutes
                     Console.WriteLine($"User {user.Username} is locked out due to too many failed login attempts.");
@@ -123,14 +123,14 @@ namespace AuthDemo.Controllers
         [HttpPost("signup")]
         public IActionResult Signup([FromBody] signUpDto signupDto)
         {
-            // Check if the username is already taken
+           
             if (_context.Users.Any(u => u.Username == signupDto.Username))
             {
                 return Conflict("Username already exists.");
             }
-            // Hash the password using Argon2id
+           
             var (salt, hash) = HashPassword(signupDto.Password);
-            // Create a new user
+   
             var newUser = new User
             {
                 Username = signupDto.Username,
@@ -153,7 +153,7 @@ namespace AuthDemo.Controllers
 
                 argon2.Salt = salt;
                 argon2.DegreeOfParallelism = 8;
-                argon2.MemorySize = 1024 * 1024; // 1 GB
+                argon2.MemorySize = 1024 * 1024; 
                 argon2.Iterations = 4;
 
               
