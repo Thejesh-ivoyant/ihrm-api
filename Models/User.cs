@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace AuthDemo.Models
+namespace IhrmApi.Models
 {
     public class User
     {
