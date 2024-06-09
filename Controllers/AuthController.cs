@@ -37,7 +37,7 @@ namespace IhrmApi.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto loginDto)
         {
-            var user = _context.users.SingleOrDefault(u => u.UserId == loginDto.UserId);
+            var user = _context.Users.SingleOrDefault(u => u.UserId == loginDto.UserId);
            
             if (user == null)
             {
@@ -124,7 +124,7 @@ namespace IhrmApi.Controllers
         public IActionResult Signup([FromBody] signUpDto signupDto)
         {
            
-            if (_context.users.Any(u => u.UserId == signupDto.UserId))
+            if (_context.Users.Any(u => u.UserId == signupDto.UserId))
             {
                 return Conflict("Username already exists.");
             }
@@ -140,7 +140,7 @@ namespace IhrmApi.Controllers
       
             };
 
-            _context.users.Add(newUser);
+            _context.Users.Add(newUser);
             _context.SaveChanges();
             return Ok("User registered successfully.");
         }
