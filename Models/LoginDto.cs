@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthDemo.Models
+namespace IhrmApi.Models
 {
     public class LoginDto
     {
-        public string Username { get; set; }
+        public int UserId { get; set; }
         public string Password { get; set; }
     }
 }
