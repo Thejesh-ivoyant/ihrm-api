@@ -1,6 +1,5 @@
 ﻿
-using AuthDemo.Models;
-using AuthDemo.Repository;
+using IhrmApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,8 +9,9 @@ using Konscious.Security.Cryptography;
 using System.Security.Cryptography;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using IhrmApi.Repository;
 
-namespace AuthDemo.Controllers
+namespace IhrmApi.Controllers
 {
 
     [Route("api/[controller]")]
@@ -37,7 +37,7 @@ namespace AuthDemo.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto loginDto)
         {
-            var user = _context.Users.SingleOrDefault(u => u.Username == loginDto.Username);
+            var user = _context.users.SingleOrDefault(u => u.UserId == loginDto.UserId);
            
             if (user == null)
             {
@@ -63,7 +63,7 @@ namespace AuthDemo.Controllers
                 if (user.FailedLoginAttempts >= 3) 
                 {
                     user.LockoutEnd = DateTime.UtcNow.AddMinutes(15); // Lock for 15 minutes
-                    Console.WriteLine($"User {user.Username} is locked out due to too many failed login attempts.");
+                    Console.WriteLine($"User {user.UserId} is locked out due to too many failed login attempts.");
                 }
                 _context.SaveChanges();
                 return Unauthorized();
@@ -104,7 +104,7 @@ namespace AuthDemo.Controllers
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+            new Claim(JwtRegisteredClaimNames.Sub, user.UserId.ToString()),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
@@ -124,7 +124,7 @@ namespace AuthDemo.Controllers
         public IActionResult Signup([FromBody] signUpDto signupDto)
         {
            
-            if (_context.Users.Any(u => u.Username == signupDto.Username))
+            if (_context.users.Any(u => u.UserId == signupDto.UserId))
             {
                 return Conflict("Username already exists.");
             }
@@ -133,12 +133,14 @@ namespace AuthDemo.Controllers
    
             var newUser = new User
             {
-                Username = signupDto.Username,
-                PasswordHash = $"{Convert.ToBase64String(salt)}.{Convert.ToBase64String(hash)}"
+                UserId = signupDto.UserId,
+                PasswordHash = $"{Convert.ToBase64String(salt)}.{Convert.ToBase64String(hash)}",
+                Email = "Vishruthaa@ivoyant.com"
+                
       
             };
 
-            _context.Users.Add(newUser);
+            _context.users.Add(newUser);
             _context.SaveChanges();
             return Ok("User registered successfully.");
         }
