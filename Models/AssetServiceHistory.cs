@@ -24,3 +24,4 @@ namespace AuthDemo.Models
         [Column("service_details")]
         public string ServiceDetails { get; set; }
     }
+}
