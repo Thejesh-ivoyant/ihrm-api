@@ -16,6 +16,8 @@ namespace IhrmApi.Repository
         public DbSet<YearlyLeavePlan> YearlyLeavePlans { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<JobRole> JobRoles { get; set; }
+        public DbSet<EmployeeTag> EmployeeTags { get; set; }
+
         public DbSet<Address> Addresses { get; set; }
         public DbSet<ProjectAssignment> ProjectAssignments { get; set; }
         public DbSet<LeaveType> LeaveTypes { get; set; }
@@ -57,6 +59,7 @@ namespace IhrmApi.Repository
             modelBuilder.Entity<Reminder>().ToTable("reminders");
             modelBuilder.Entity<YearlyLeavePlan>().ToTable("yearly_leave_plan");
             modelBuilder.Entity<Department>().ToTable("departments");
+            modelBuilder.Entity<EmployeeTag>().ToTable("employee_tags");
             modelBuilder.Entity<JobRole>().ToTable("job_roles");
             modelBuilder.Entity<Address>().ToTable("addresses");
             modelBuilder.Entity<ProjectAssignment>().ToTable("project_assignments");
