@@ -15,8 +15,8 @@ namespace AuthDemo.Models
         public Guid EmployeeId { get; set; }
 
         [Required]
-        [Column("date")]
-        public DateTime Date { get; set; }
+        [Column("attendance_date")]
+        public DateTime Attendance_Date { get; set; }
 
         [Column("check_in_time")]
         public TimeSpan? CheckInTime { get; set; }
