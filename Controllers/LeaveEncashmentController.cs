@@ -30,7 +30,7 @@ namespace IhrmApi.Controllers
                 EmployeeId = request.EmployeeId,
                 EncashmentDate = DateTime.UtcNow,
                 LeaveDays = request.LeaveDays,
-                EncashmentAmount = request.LeaveDays * 10 // salary need to be added
+                EncashmentAmount = (decimal)(request.LeaveDays * employee.BasicSalary)
             };
 
             _context.LeaveEncashments.Add(leaveEncashment);

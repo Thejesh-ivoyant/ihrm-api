@@ -16,6 +16,8 @@ namespace IhrmApi.Repository
         public DbSet<YearlyLeavePlan> YearlyLeavePlans { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<JobRole> JobRoles { get; set; }
+        public DbSet<EmployeeTag> EmployeeTags { get; set; }
+
         public DbSet<Address> Addresses { get; set; }
         public DbSet<ProjectAssignment> ProjectAssignments { get; set; }
         public DbSet<LeaveType> LeaveTypes { get; set; }
@@ -26,6 +28,7 @@ namespace IhrmApi.Repository
         public DbSet<Certification> Certifications { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Learning> Learnings { get; set; }
+        public DbSet<Configuration> Configurations { get; set; }
         public DbSet<Onboarding> Onboardings { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<Asset> Assets { get; set; }
@@ -49,6 +52,7 @@ namespace IhrmApi.Repository
         {
             // Apply snake_case naming convention
             modelBuilder.Entity<User>().ToTable("users");
+            modelBuilder.Entity<Configuration>().ToTable("configurations");
             modelBuilder.Entity<Project>().ToTable("projects");
             modelBuilder.Entity<Employee>().ToTable("employees");
             modelBuilder.Entity<Timesheet>().ToTable("timesheets");
@@ -57,6 +61,7 @@ namespace IhrmApi.Repository
             modelBuilder.Entity<Reminder>().ToTable("reminders");
             modelBuilder.Entity<YearlyLeavePlan>().ToTable("yearly_leave_plan");
             modelBuilder.Entity<Department>().ToTable("departments");
+            modelBuilder.Entity<EmployeeTag>().ToTable("employee_tags");
             modelBuilder.Entity<JobRole>().ToTable("job_roles");
             modelBuilder.Entity<Address>().ToTable("addresses");
             modelBuilder.Entity<ProjectAssignment>().ToTable("project_assignments");

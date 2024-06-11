@@ -19,8 +19,8 @@ namespace AuthDemo.Models
         public string Message { get; set; }
 
         [Required]
-        [Column("date")]
-        public DateTime Date { get; set; }
+        [Column("notification_date")]
+        public DateTime NotificationDate { get; set; }
 
         [Required]
         [MaxLength(20)]

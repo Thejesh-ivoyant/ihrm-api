@@ -70,5 +70,12 @@ namespace AuthDemo.Models
         [MaxLength(20)]
         [Column("leave_status")]
         public string LeaveStatus { get; set; } = "None";
+
+        [Column("basic_salary")]
+        public decimal? BasicSalary { get; set; }
+
+        [Column("total_salary")]
+        public decimal? TotalSalary { get; set; }
+
     }
 }

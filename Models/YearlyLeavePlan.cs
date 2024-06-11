@@ -15,8 +15,8 @@ namespace AuthDemo.Models
         public Guid EmployeeId { get; set; }
 
         [Required]
-        [Column("year")]
-        public int Year { get; set; }
+        [Column("plan_year")]
+        public int Plan_Year { get; set; }
 
         [Required]
         [Column("leave_days")]
