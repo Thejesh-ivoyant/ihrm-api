@@ -28,6 +28,7 @@ namespace IhrmApi.Repository
         public DbSet<Certification> Certifications { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Learning> Learnings { get; set; }
+        public DbSet<Configuration> Configurations { get; set; }
         public DbSet<Onboarding> Onboardings { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<Asset> Assets { get; set; }
@@ -51,6 +52,7 @@ namespace IhrmApi.Repository
         {
             // Apply snake_case naming convention
             modelBuilder.Entity<User>().ToTable("users");
+            modelBuilder.Entity<Configuration>().ToTable("configurations");
             modelBuilder.Entity<Project>().ToTable("projects");
             modelBuilder.Entity<Employee>().ToTable("employees");
             modelBuilder.Entity<Timesheet>().ToTable("timesheets");
